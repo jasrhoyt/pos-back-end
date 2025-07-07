@@ -1,4 +1,3 @@
-# pos_back_end/db/init_db.py
 import os
 from pathlib import Path
 from sqlalchemy import create_engine

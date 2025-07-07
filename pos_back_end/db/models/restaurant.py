@@ -1,10 +1,15 @@
+from sqlalchemy.orm import relationship
 from pos_back_end.db.base import Base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
+
+from pos_back_end.db.models.address import Address
 
 
 class Restaurant(Base):
     __tablename__ = 'restaurants'
-    id = Column(Integer, primary_key=True)
 
+    id = Column(Integer, primary_key=True)
     restaurant_name = Column(String, nullable=False)
-    new_column_test_ten = Column(String)
+
+    address_id = Column(Integer, ForeignKey(Address.id), unique=True)
+    address = relationship(Address, back_populates="restaurant", nullable=False)
