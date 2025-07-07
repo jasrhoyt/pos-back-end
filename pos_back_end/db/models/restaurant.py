@@ -7,4 +7,4 @@ class Restaurant(Base):
     id = Column(Integer, primary_key=True)
 
     restaurant_name = Column(String, nullable=False)
-    new_column_test_five = Column(String)
+    new_column_test_ten = Column(String)

@@ -3,7 +3,6 @@ import os
 from pathlib import Path
 from sqlalchemy import create_engine
 from pos_back_end.db.base import Base
-from pos_back_end.db.models import Admin, User, Restaurant
 
 
 def init_db():
@@ -21,7 +20,7 @@ def init_db():
     engine = create_engine(f'sqlite:///{db_path}')
 
     # Create all tables defined in the models
-    Base.metadata.create_all(engine)
+    # Base.metadata.create_all(engine)
     print(f"Database initialized successfully at {db_path}")
 
 
