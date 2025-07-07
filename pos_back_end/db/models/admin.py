@@ -14,4 +14,4 @@ class Admin(Base):
     company_name = Column(String, nullable=False)
 
     address_id = Column(Integer, ForeignKey(Address.id), unique=True)
-    address = relationship(Address, back_populates="corporate_address", nullable=False)
+    address = relationship(Address, back_populates="corporate_address")
