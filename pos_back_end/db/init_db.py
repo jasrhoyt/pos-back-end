@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 from sqlalchemy import create_engine
 from pos_back_end.db.base import Base
-from pos_back_end.db.models import Admin, User
+from pos_back_end.db.models import Admin, User, Restaurant
 
 
 def init_db():

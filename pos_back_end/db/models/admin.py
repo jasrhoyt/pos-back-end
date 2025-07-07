@@ -9,3 +9,5 @@ class Admin(Base):
     email = Column(String, unique=True, nullable=False)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
+
+    company_name = Column(String, nullable=False)

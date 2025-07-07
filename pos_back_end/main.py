@@ -4,7 +4,7 @@ from pos_back_end.api.admin import router as admin_router
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from pos_back_end.db.base import Base
-# from pos_back_end.db.models import User, Admin
+from pos_back_end.db.models import Admin, User, Restaurant
 import os
 
 app = FastAPI()
