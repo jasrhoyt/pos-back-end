@@ -13,4 +13,5 @@ class Address(Base):
     state = Column(String)
     zipcode = Column(String)
 
-    restaurant = relationship(Restaurant, back_populates="address", uselist=False)
+    restaurant_address = relationship(Restaurant, back_populates="address", uselist=False)
+    corporate_address = relationship(Restaurant, back_populates="address", uselist=False)

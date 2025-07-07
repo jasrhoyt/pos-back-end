@@ -1,6 +1,7 @@
 from pos_back_end.db.base import Base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
+from pos_back_end.db.models.address import Address
 
 
 class Admin(Base):
@@ -11,3 +12,6 @@ class Admin(Base):
     last_name = Column(String, nullable=False)
 
     company_name = Column(String, nullable=False)
+
+    address_id = Column(Integer, ForeignKey(Address.id), unique=True)
+    address = relationship(Address, back_populates="corporate_address", nullable=False)
