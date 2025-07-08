@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, Float
 from sqlalchemy.orm import relationship
 from pos_back_end.db.base import Base
 from pos_back_end.db.models.menu_category import MenuCategory
@@ -9,6 +9,9 @@ class MenuItem(Base):
 
     id = Column(Integer, primary_key=True)
     item_name = Column(String, nullable=False)
+    preparation_time = Column(String)
+    is_active = Column(Boolean, default=True)
+    item_price = Column(Float, nullable=False)
 
     menu_category_id = Column(Integer, ForeignKey(MenuCategory.id), nullable=False)
     menu_category = relationship(MenuCategory, back_populates="menu_items")

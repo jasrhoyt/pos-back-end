@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from pos_back_end.db.base import Base
-from pos_back_end.db.models.menu_category import MenuCategory
 from pos_back_end.db.models.menu_item import MenuItem
 from pos_back_end.db.models.order import Order
 
@@ -16,3 +15,6 @@ class OrderItem(Base):
 
     menu_item_id = Column(Integer, ForeignKey(MenuItem.id), nullable=False)
     menu_item = relationship("MenuItem", back_populates="order_item")
+
+    order_instructions = Column(String)
+    is_complete = Column(Boolean, default=False)
