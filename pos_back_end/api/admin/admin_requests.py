@@ -3,10 +3,10 @@ from .admin_request_models import AdminRequestBody
 router = APIRouter()
 
 
-@router.post("/admin")
-def get_admin(request: AdminRequestBody):
+@router.post("/login")
+def login(request: AdminRequestBody):
 
-    user_id = request.user_id
+    email = request.email
     password = request.password
 
-    return {"admin": "This is admin info"}
+    return {"admin": f"This is admin info: ${email}"}

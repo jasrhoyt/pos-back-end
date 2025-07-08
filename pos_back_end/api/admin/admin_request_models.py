@@ -2,6 +2,6 @@ from pydantic import BaseModel
 
 
 class AdminRequestBody(BaseModel):
-    user_id: str
+    email: str
     password: str
 
