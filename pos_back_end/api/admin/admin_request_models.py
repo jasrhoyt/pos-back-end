@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 from pos_back_end.db.models.address import Address
@@ -22,7 +24,7 @@ class LoginResponseBody(BaseModel):
     first_name: str
     last_name: str
     company_name: str
-    address: AddressResponse
+    address: Optional[AddressResponse] = None
 
     class Config:
         from_attributes = True  # Allows mapping from SQLAlchemy objects

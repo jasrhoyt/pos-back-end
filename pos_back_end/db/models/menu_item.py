@@ -17,5 +17,10 @@ class MenuItem(Base):
     menu_category = relationship(MenuCategory, back_populates="menu_items")
 
     menu_item_ingredient_joins = relationship("MenuItemIngredientJoin", back_populates="menu_item")
-    ingredients = relationship("Ingredient", secondary="menu_item_ingredient_joins", back_populates="menu_items")
+    ingredients = relationship(
+        "Ingredient",
+        secondary="menu_item_ingredient_joins",
+        back_populates="menu_items",
+        overlaps="menu_item_ingredient_joins"
+    )
     order_items = relationship("OrderItem", back_populates="menu_item")

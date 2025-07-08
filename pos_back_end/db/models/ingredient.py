@@ -9,4 +9,9 @@ class Ingredient(Base):
     name = Column(String, unique=True, nullable=False)
 
     menu_item_ingredient_joins = relationship("MenuItemIngredientJoin", back_populates="ingredient")
-    menu_items = relationship("MenuItem", secondary="menu_item_ingredient_joins", back_populates="ingredients")
+    menu_items = relationship(
+        "MenuItem",
+        secondary="menu_item_ingredient_joins",
+        back_populates="ingredients",
+        overlaps="menu_item_ingredient_joins"
+    )

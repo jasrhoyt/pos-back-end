@@ -26,12 +26,14 @@ def login(request: LoginRequestBody, db: Session = Depends(get_db)):
             detail="Invalid email or password",
         )
 
+    address = admin.address
+
     return LoginResponseBody(
         first_name=admin.first_name,
         last_name=admin.last_name,
         company_name=admin.company_name,
-        street_address=admin.address.street_address,
-        city=admin.address.city,
-        state=admin.address.state,
-        zipcode=admin.address.zipcode
+        street_address=address.street_address if address is not None else None,
+        city=address.city if address is not None else None,
+        state=address.state if address is not None else None,
+        zipcode=address.zipcode if address is not None else None
     )
