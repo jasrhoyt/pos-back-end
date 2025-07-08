@@ -1,0 +1,13 @@
+from pos_back_end.db.base import Base
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+
+
+class Ingredient(Base):
+    __tablename__ = 'ingredients'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, unique=True, nullable=False)
+
+    menu_item_ingredient_joins = relationship("MenuItemIngredientJoin", back_populates="ingredient")
+    menu_items = relationship("MenuItem", secondary="menu_item_ingredient_join", back_populates="ingredients")

@@ -15,3 +15,5 @@ class Admin(Base):
 
     address_id = Column(Integer, ForeignKey(Address.id), unique=True)
     address = relationship(Address, back_populates="corporate_address")
+
+    restaurants = relationship("Restaurant", back_populates="admin")
