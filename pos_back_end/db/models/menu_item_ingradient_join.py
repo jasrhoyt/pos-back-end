@@ -1,5 +1,5 @@
 from pos_back_end.db.base import Base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 from pos_back_end.db.models.menu_item import MenuItem

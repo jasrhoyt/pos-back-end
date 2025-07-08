@@ -11,6 +11,6 @@ class MenuCategory(Base):
     category_name = Column(String, nullable=False)
 
     restaurant_id = Column(Integer, ForeignKey(Restaurant.id), nullable=False)
-    restaurant = relationship(Restaurant, back_populates="menu_category", uselist=False)
+    restaurant = relationship(Restaurant, back_populates="menu_categories", uselist=False)
 
     menu_items = relationship("MenuItem", back_populates="menu_category")

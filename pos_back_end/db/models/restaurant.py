@@ -14,4 +14,4 @@ class Restaurant(Base):
     address_id = Column(Integer, ForeignKey(Address.id), unique=True)
     address = relationship(Address, back_populates="restaurant_address")
 
-    menu_category = relationship("MenuCategory", back_populates="restaurant")
+    menu_categories = relationship("MenuCategory", back_populates="restaurant")
