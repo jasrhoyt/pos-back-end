@@ -2,7 +2,6 @@ from pos_back_end.db.base import Base
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-
 class Ingredient(Base):
     __tablename__ = 'ingredients'
 
@@ -10,4 +9,4 @@ class Ingredient(Base):
     name = Column(String, unique=True, nullable=False)
 
     menu_item_ingredient_joins = relationship("MenuItemIngredientJoin", back_populates="ingredient")
-    menu_items = relationship("MenuItem", secondary="menu_item_ingredient_join", back_populates="ingredients")
+    menu_items = relationship("MenuItem", secondary="menu_item_ingredient_joins", back_populates="ingredients")

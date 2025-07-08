@@ -1,12 +1,37 @@
-from fastapi import APIRouter
-from .admin_request_models import AdminRequestBody
+from fastapi import APIRouter, HTTPException, status
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from pos_back_end.db.dependencies import get_db
+from .admin_request_models import LoginRequestBody, LoginResponseBody
+from .services.login_services import LoginServices
+from ...db.models.admin import Admin
+
 router = APIRouter()
 
 
 @router.post("/login")
-def login(request: AdminRequestBody):
+def login(request: LoginRequestBody, db: Session = Depends(get_db)):
 
-    email = request.email
-    password = request.password
+    service = LoginServices()
 
-    return {"admin": f"This is admin info: ${email}"}
+    admin: Admin = service.get_user_data(
+        request.email,
+        request.password,
+        db
+    )
+
+    if not admin:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid email or password",
+        )
+
+    return LoginResponseBody(
+        first_name=admin.first_name,
+        last_name=admin.last_name,
+        company_name=admin.company_name,
+        street_address=admin.address.street_address,
+        city=admin.address.city,
+        state=admin.address.state,
+        zipcode=admin.address.zipcode
+    )

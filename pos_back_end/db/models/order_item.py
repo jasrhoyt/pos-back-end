@@ -14,7 +14,7 @@ class OrderItem(Base):
     order = relationship("Order", back_populates="order_items")
 
     menu_item_id = Column(Integer, ForeignKey(MenuItem.id), nullable=False)
-    menu_item = relationship("MenuItem", back_populates="order_item")
+    menu_item = relationship("MenuItem", back_populates="order_items")
 
     order_instructions = Column(String)
     is_complete = Column(Boolean, default=False)
