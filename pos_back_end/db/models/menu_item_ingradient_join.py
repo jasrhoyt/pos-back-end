@@ -2,7 +2,7 @@ from pos_back_end.db.base import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from pos_back_end.db.models import MenuItem
+from pos_back_end.db.models.menu_item import MenuItem
 from pos_back_end.db.models.ingredient import Ingredient
 
 

@@ -1,7 +1,6 @@
-from .admin import Admin
-from .user import User
-from .restaurant import Restaurant
-from .address import Address
-from .menu_category import MenuCategory
-from .menu_item import MenuItem
+import pkgutil
+import importlib
 
+# Automatically import all modules in the current package
+for loader, module_name, is_pkg in pkgutil.walk_packages(__path__):
+    importlib.import_module(f"{__name__}.{module_name}")

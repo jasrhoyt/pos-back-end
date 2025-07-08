@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from sqlalchemy import create_engine
 from alembic import context
 from pos_back_end.db.base import Base
-from pos_back_end.db.models import Admin, User, Restaurant, Address
+from pos_back_end.db.models import *
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

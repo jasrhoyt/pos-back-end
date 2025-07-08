@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from pos_back_end.db.base import Base
-from pos_back_end.db.models import Restaurant
+from pos_back_end.db.models.restaurant import Restaurant
 
 
 class MenuCategory(Base):
