@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from pos_back_end.db.dependencies import get_db
 from .admin_request_models import LoginRequestBody, LoginResponseBody, PostAdminRequestBody, PostAdminResponseBody, \
     AddressResponse
+from .services.account_services import AccountServices
 from .services.login_services import LoginServices
 from ...db.models.admin import Admin
 
@@ -74,6 +75,14 @@ def login(request: PostAdminRequestBody, db: Session = Depends(get_db)):
             state=address.state,
             zipcode=address.zipcode
         ) if address is not None else None,
-        message=f"Account with email {new_admin.email}"
+        message=f"Account with email {new_admin.email} successfully create!"
     )
 
+
+@router.get("/states")
+def get_states(db: Session = Depends(get_db)):
+
+    service = AccountServices()
+    states = service.get_states(db)
+
+    return states

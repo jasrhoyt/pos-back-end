@@ -10,7 +10,7 @@ class LoginRequestBody(BaseModel):
     password: str
 
 
-class AddressResponse(BaseModel):
+class AddressRequestAndResponse(BaseModel):
     street_address: str
     city: str
     state: str
@@ -25,7 +25,7 @@ class LoginResponseBody(BaseModel):
     last_name: str
     company_name: str
     email: str
-    address: Optional[AddressResponse] = None
+    address: Optional[AddressRequestAndResponse] = None
 
     class Config:
         from_attributes = True  # Allows mapping from SQLAlchemy objects
@@ -34,9 +34,11 @@ class LoginResponseBody(BaseModel):
 class PostAdminRequestBody(BaseModel):
     email: str
     password: str
-    first_name = str
-    last_name = str
-    company_name = str
+    first_name: str
+    last_name: str
+    company_name: str
+    address: AddressRequestAndResponse
+    phone_number: str
 
 
 class PostAdminResponseBody(LoginResponseBody):
