@@ -2,8 +2,9 @@ from fastapi import APIRouter, HTTPException, status
 from fastapi import Depends
 from sqlalchemy.orm import Session
 from pos_back_end.db.dependencies import get_db
-from .admin_request_models import LoginRequestBody, LoginResponseBody, PostAdminRequestBody, PostAdminResponseBody, \
-    AddressResponse
+from pos_back_end.api.admin.models.admin_request_models import LoginRequestBody, LoginResponseBody, PostAdminRequestBody, PostAdminResponseBody, \
+    AddressRequestAndResponse
+from .models.state_models import StateResponseBody, StateItem
 from .services.account_services import AccountServices
 from .services.login_services import LoginServices
 from ...db.models.admin import Admin
@@ -35,7 +36,7 @@ def login(request: LoginRequestBody, db: Session = Depends(get_db)):
         last_name=admin.last_name,
         company_name=admin.company_name,
         email=admin.email,
-        address=AddressResponse(
+        address=AddressRequestAndResponse(
             street_address=address.street_address,
             city=address.city,
             state=address.state,
@@ -69,7 +70,7 @@ def login(request: PostAdminRequestBody, db: Session = Depends(get_db)):
         last_name=new_admin.last_name,
         company_name=new_admin.company_name,
         email=new_admin.email,
-        address=AddressResponse(
+        address=AddressRequestAndResponse(
             street_address=address.street_address,
             city=address.city,
             state=address.state,
@@ -85,4 +86,6 @@ def get_states(db: Session = Depends(get_db)):
     service = AccountServices()
     states = service.get_states(db)
 
-    return states
+    state_items = [StateItem.from_orm(state) for state in states]
+
+    return StateResponseBody(states=state_items)
