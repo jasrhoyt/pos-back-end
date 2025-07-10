@@ -46,11 +46,9 @@ def login(request: LoginRequestBody, db: Session = Depends(get_db)):
 
 
 @router.post("/admin")
-def login(request: PostAdminRequestBody, db: Session = Depends(get_db)):
+def create_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
 
-    service = LoginServices()
-
-    existing_admin: Admin = service.validate_admin_email(
+    existing_admin: Admin = LoginServices().validate_admin_email(
         request.email,
         db
     )
@@ -61,9 +59,18 @@ def login(request: PostAdminRequestBody, db: Session = Depends(get_db)):
             detail="Email already in use.",
         )
 
-    new_admin = service.create_admin(request, db)
+    new_address = AccountServices().create_address(request.address, db)
 
-    address = new_admin.address
+    db.add(new_address)
+    db.flush()
+
+    new_admin = LoginServices().create_admin(request)
+    new_admin.address_id = new_address.id
+
+    db.add(new_admin)
+    db.flush()
+
+    db.commit()
 
     return PostAdminResponseBody(
         first_name=new_admin.first_name,
@@ -71,11 +78,11 @@ def login(request: PostAdminRequestBody, db: Session = Depends(get_db)):
         company_name=new_admin.company_name,
         email=new_admin.email,
         address=AddressRequestAndResponse(
-            street_address=address.street_address,
-            city=address.city,
-            state=address.state,
-            zipcode=address.zipcode
-        ) if address is not None else None,
+            street_address=new_address.street_address,
+            city=new_address.city,
+            state=new_address.state,
+            zipcode=new_address.zipcode
+        ),
         message=f"Account with email {new_admin.email} successfully create!"
     )
 

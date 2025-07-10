@@ -15,8 +15,8 @@ class Order(Base):
     order_items = Relationship("OrderItem", back_populates="order")
 
 
-def get_the_time():
-    print("test value:", datetime.now())
-
-
-get_the_time()
+# def get_the_time():
+#     print("test value:", datetime.now())
+#
+#
+# get_the_time()

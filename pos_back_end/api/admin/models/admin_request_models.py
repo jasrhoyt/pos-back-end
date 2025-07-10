@@ -25,7 +25,7 @@ class LoginResponseBody(BaseModel):
     last_name: str
     company_name: str
     email: str
-    address: Optional[AddressRequestAndResponse] = None
+    address: AddressRequestAndResponse
 
     class Config:
         from_attributes = True  # Allows mapping from SQLAlchemy objects

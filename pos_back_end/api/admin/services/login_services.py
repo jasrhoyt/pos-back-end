@@ -15,7 +15,7 @@ class LoginServices:
         return db.query(Admin).filter(Admin.email == email).first()
 
     @staticmethod
-    def create_admin(request: PostAdminRequestBody, db: Session):
+    def create_admin(request: PostAdminRequestBody):
         new_admin = Admin(
             email=request.email,
             password=request.password,
@@ -23,10 +23,6 @@ class LoginServices:
             last_name=request.last_name,
             company_name=request.company_name
         )
-
-        db.add(new_admin)
-        db.commit()
-        db.refresh(new_admin)
 
         return new_admin
 
