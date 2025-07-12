@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 from pos_back_end.db.models.address import Address
 
@@ -14,8 +14,7 @@ class AddressRequestAndResponse(BaseModel):
     state: str
     zipcode: str
 
-    class Config:
-        from_attributes = True  # Allows mapping from SQLAlchemy objects
+    model_config = ConfigDict(from_attributes=True)
 
 
 class LoginResponseBody(BaseModel):
@@ -25,8 +24,7 @@ class LoginResponseBody(BaseModel):
     email: str
     address: AddressRequestAndResponse
 
-    class Config:
-        from_attributes = True  # Allows mapping from SQLAlchemy objects
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PostAdminRequestBody(BaseModel):
