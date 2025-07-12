@@ -1,6 +1,4 @@
-from typing import Optional
-
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from pos_back_end.db.models.address import Address
 
@@ -32,11 +30,11 @@ class LoginResponseBody(BaseModel):
 
 
 class PostAdminRequestBody(BaseModel):
-    email: str
-    password: str
     first_name: str
     last_name: str
     company_name: str
+    email: str
+    password: str
     address: AddressRequestAndResponse
     phone_number: str
 
