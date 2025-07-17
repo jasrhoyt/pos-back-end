@@ -18,10 +18,12 @@ class AddressRequestAndResponse(BaseModel):
 
 
 class LoginResponseBody(BaseModel):
+    user_id: int
     first_name: str
     last_name: str
     company_name: str
     email: str
+    phone_number: str
     address: AddressRequestAndResponse
 
     model_config = ConfigDict(from_attributes=True)

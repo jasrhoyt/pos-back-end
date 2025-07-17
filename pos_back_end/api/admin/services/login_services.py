@@ -21,7 +21,8 @@ class LoginServices:
             password=request.password,
             first_name=request.first_name,
             last_name=request.last_name,
-            company_name=request.company_name
+            company_name=request.company_name,
+            phone_number=request.phone_number
         )
 
         return new_admin

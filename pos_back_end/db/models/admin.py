@@ -13,6 +13,7 @@ class Admin(Base):
     last_name = Column(String, nullable=False)
 
     company_name = Column(String, nullable=False)
+    phone_number = Column(String, nullable=False)
 
     address_id = Column(Integer, ForeignKey(Address.id), unique=True)
     address = relationship(Address, back_populates="corporate_address")

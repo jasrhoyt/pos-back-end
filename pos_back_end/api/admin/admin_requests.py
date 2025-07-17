@@ -32,10 +32,12 @@ def login(request: LoginRequestBody, db: Session = Depends(get_db)):
     address = admin.address
 
     return LoginResponseBody(
+        user_id=admin.id,
         first_name=admin.first_name,
         last_name=admin.last_name,
         company_name=admin.company_name,
         email=admin.email,
+        phone_number=admin.phone_number,
         address=AddressRequestAndResponse(
             street_address=address.street_address,
             city=address.city,
@@ -73,10 +75,12 @@ def create_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
     db.commit()
 
     return PostAdminResponseBody(
+        user_id=new_admin.id,
         first_name=new_admin.first_name,
         last_name=new_admin.last_name,
         company_name=new_admin.company_name,
         email=new_admin.email,
+        phone_number=new_admin.phone_number,
         address=AddressRequestAndResponse(
             street_address=new_address.street_address,
             city=new_address.city,
