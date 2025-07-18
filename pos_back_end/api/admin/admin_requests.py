@@ -5,7 +5,8 @@ from pos_back_end.db.dependencies import get_db
 from pos_back_end.api.admin.models.admin_request_models import LoginRequestBody, LoginResponseBody, PostAdminRequestBody, PostAdminResponseBody, \
     AddressRequestAndResponse
 from .models.state_models import StateResponseBody, StateItem
-from .services.account_services import AccountServices
+from .services.address_services import AddressServices
+from .services.admin_services import AdminServices
 from .services.login_services import LoginServices
 from ...db.models.admin import Admin
 
@@ -61,12 +62,12 @@ def create_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
             detail="Email already in use.",
         )
 
-    new_address = AccountServices().create_address(request.address, db)
+    new_address = AddressServices().create_address(request.address)
 
     db.add(new_address)
     db.flush()
 
-    new_admin = LoginServices().create_admin(request)
+    new_admin = AdminServices().create_admin(request)
     new_admin.address_id = new_address.id
 
     db.add(new_admin)
@@ -94,8 +95,7 @@ def create_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
 @router.get("/states")
 def get_states(db: Session = Depends(get_db)):
 
-    service = AccountServices()
-    states = service.get_states(db)
+    states = AddressServices().get_states(db)
 
     state_items = [StateItem.from_orm(state) for state in states]
 

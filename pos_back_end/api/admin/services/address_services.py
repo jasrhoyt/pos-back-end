@@ -4,14 +4,14 @@ from pos_back_end.db.models.address import Address
 from pos_back_end.db.models.state import State
 
 
-class AccountServices:
+class AddressServices:
 
     @staticmethod
     def get_states(db: Session):
         return db.query(State).all()
 
     @staticmethod
-    def create_address(request: AddressRequestAndResponse, db: Session):
+    def create_address(request: AddressRequestAndResponse):
         new_address = Address(
             street_address=request.street_address,
             city=request.city,
@@ -20,3 +20,4 @@ class AccountServices:
         )
 
         return new_address
+

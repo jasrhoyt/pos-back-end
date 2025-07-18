@@ -14,16 +14,3 @@ class LoginServices:
     def validate_admin_email(email: str, db: Session):
         return db.query(Admin).filter(Admin.email == email).first()
 
-    @staticmethod
-    def create_admin(request: PostAdminRequestBody):
-        new_admin = Admin(
-            email=request.email,
-            password=request.password,
-            first_name=request.first_name,
-            last_name=request.last_name,
-            company_name=request.company_name,
-            phone_number=request.phone_number
-        )
-
-        return new_admin
-
