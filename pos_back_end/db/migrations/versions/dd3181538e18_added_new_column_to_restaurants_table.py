@@ -1,4 +1,4 @@
-"""added new column to restaurants table
+"""added new column to restaurant table
 
 Revision ID: dd3181538e18
 Revises: 0832897ecddb

@@ -7,7 +7,7 @@ from pos_back_end.db.models.admin import Admin
 
 
 class Restaurant(Base):
-    __tablename__ = 'restaurants'
+    __tablename__ = 'restaurant'
 
     id = Column(Integer, primary_key=True)
     restaurant_name = Column(String, nullable=False)

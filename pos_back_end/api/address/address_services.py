@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from pos_back_end.api.admin.models.admin_request_models import AddressRequestAndResponse
+from pos_back_end.api.address.address_models import AddressRequestAndResponse
 from pos_back_end.db.models.address import Address
 from pos_back_end.db.models.state import State
 

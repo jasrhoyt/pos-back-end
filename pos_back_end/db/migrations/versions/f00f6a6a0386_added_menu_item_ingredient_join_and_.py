@@ -25,7 +25,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('street_address', sa.String(), nullable=True),
     sa.Column('city', sa.String(), nullable=True),
-    sa.Column('state', sa.String(), nullable=True),
+    sa.Column('address', sa.String(), nullable=True),
     sa.Column('zipcode', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -61,7 +61,7 @@ def upgrade() -> None:
     sa.UniqueConstraint('address_id'),
     sa.UniqueConstraint('email')
     )
-    op.create_table('restaurants',
+    op.create_table('restaurant',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurant_name', sa.String(), nullable=False),
     sa.Column('address_id', sa.Integer(), nullable=True),
@@ -73,7 +73,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('category_name', sa.String(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
+    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurant.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('menu_items',
@@ -100,7 +100,7 @@ def downgrade() -> None:
     op.drop_table('menu_item_ingredient_joins')
     op.drop_table('menu_items')
     op.drop_table('menu_categories')
-    op.drop_table('restaurants')
+    op.drop_table('restaurant')
     op.drop_table('admins')
     op.drop_table('users')
     op.drop_table('orders')

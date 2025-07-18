@@ -1,4 +1,4 @@
-from pos_back_end.api.admin.models.admin_request_models import PostAdminRequestBody
+from pos_back_end.api.admin.admin_request_models import PostAdminRequestBody
 from pos_back_end.db.models.admin import Admin
 
 

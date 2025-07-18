@@ -1,4 +1,4 @@
-"""added new column to restaurants table test 3
+"""added new column to restaurant table test 3
 
 Revision ID: bbc8bee13df6
 Revises: cf483d89bccc

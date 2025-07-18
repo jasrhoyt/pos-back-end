@@ -1,4 +1,4 @@
-"""Changed datatype of restaurants and added column
+"""Changed datatype of restaurant and added column
 
 Revision ID: 7819ec6193af
 Revises: 24686d763799

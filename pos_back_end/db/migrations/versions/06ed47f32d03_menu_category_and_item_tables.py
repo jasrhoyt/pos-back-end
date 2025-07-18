@@ -27,8 +27,8 @@ def upgrade() -> None:
             ['id']
         )
 
-    # Batch mode for restaurants table
-    with op.batch_alter_table('restaurants') as batch_op:
+    # Batch mode for restaurant table
+    with op.batch_alter_table('restaurant') as batch_op:
         batch_op.add_column(sa.Column('address_id', sa.Integer(), nullable=True))
         batch_op.create_unique_constraint('uq_restaurants_address_id', ['address_id'])
         batch_op.create_foreign_key(
@@ -40,8 +40,8 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     """Downgrade schema."""
-    # Batch mode for restaurants table
-    with op.batch_alter_table('restaurants') as batch_op:
+    # Batch mode for restaurant table
+    with op.batch_alter_table('restaurant') as batch_op:
         batch_op.drop_constraint('fk_restaurants_address_id', type_='foreignkey')
         batch_op.drop_constraint('uq_restaurants_address_id', type_='unique')
         batch_op.drop_column('address_id')

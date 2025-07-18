@@ -1,4 +1,4 @@
-"""added state table
+"""added address table
 
 Revision ID: d9240ad9fae3
 Revises: e04a2d0bb9ef

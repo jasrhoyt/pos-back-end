@@ -13,3 +13,12 @@ class StateItem(BaseModel):
 class StateResponseBody(BaseModel):
     states: List[StateItem]
 
+
+class AddressRequestAndResponse(BaseModel):
+    street_address: str
+    city: str
+    state: str
+    zipcode: str
+
+    model_config = ConfigDict(from_attributes=True)
+
