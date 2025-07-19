@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, ConfigDict, field_validator
+from typing import Any
 
 from pos_back_end.api.address.address_models import AddressRequestAndResponse
-from pos_back_end.db.models.address import Address
 
 
 class LoginRequestBody(BaseModel):

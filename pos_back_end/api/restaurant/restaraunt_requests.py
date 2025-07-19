@@ -15,11 +15,12 @@ def get_restaurants(admin_id: int, db: Session = Depends(get_db)):
 
 @router.post('/restaurants')
 def post_restaurant(request: PostRestaurantRequestBody, db: Session = Depends(get_db)):
+    print('test value:', request.admin_id)
 
     if request.address is None and not request.use_address_on_file:
 
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid email or password",
+            detail="Contact information is necessary if not using the parent company's information.",
         )
 
