@@ -1,3 +1,5 @@
+from sqlalchemy.orm import Session
+
 from pos_back_end.api.admin.admin_request_models import PostAdminRequestBody
 from pos_back_end.db.models.admin import Admin
 
@@ -17,4 +19,7 @@ class AdminServices:
 
         return new_admin
 
+    @staticmethod
+    def get_admin(admin_id: int, db: Session):
+        return db.query(Admin).filter(Admin.id == admin_id).one_or_none()
 

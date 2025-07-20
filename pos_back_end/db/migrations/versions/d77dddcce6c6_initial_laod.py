@@ -1,8 +1,8 @@
-"""db setup
+"""initial laod
 
-Revision ID: 9fa13c65f2c7
+Revision ID: d77dddcce6c6
 Revises: 
-Create Date: 2025-07-18 17:09:43.124444
+Create Date: 2025-07-19 20:56:46.646496
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '9fa13c65f2c7'
+revision: str = 'd77dddcce6c6'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -70,12 +70,13 @@ def upgrade() -> None:
     op.create_table('restaurants',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurant_name', sa.String(), nullable=False),
+    sa.Column('restaurant_email', sa.String(), nullable=False),
+    sa.Column('phone_number', sa.String(), nullable=False),
     sa.Column('admin_id', sa.Integer(), nullable=True),
     sa.Column('address_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['address_id'], ['addresses.id'], ),
     sa.ForeignKeyConstraint(['admin_id'], ['admins.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('address_id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('menu_categories',
     sa.Column('id', sa.Integer(), nullable=False),

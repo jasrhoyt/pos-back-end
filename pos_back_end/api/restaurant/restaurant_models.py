@@ -9,3 +9,4 @@ class PostRestaurantRequestBody(BaseModel):
     restaurant_email: str
     use_address_on_file: Optional[bool] = False
     address: Optional[AddressRequestAndResponse] = None
+    phone_number: str

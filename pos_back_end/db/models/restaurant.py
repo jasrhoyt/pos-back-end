@@ -11,11 +11,13 @@ class Restaurant(Base):
 
     id = Column(Integer, primary_key=True)
     restaurant_name = Column(String, nullable=False)
+    restaurant_email = Column(String, nullable=False)
+    phone_number = Column(String, nullable=False)
 
     admin_id = Column(Integer, ForeignKey(Admin.id))
     admin = relationship(Admin, back_populates="restaurants")
 
-    address_id = Column(Integer, ForeignKey(Address.id), unique=True)
+    address_id = Column(Integer, ForeignKey(Address.id))
     address = relationship(Address, back_populates="restaurant_address")
 
     menu_categories = relationship("MenuCategory", back_populates="restaurant")
