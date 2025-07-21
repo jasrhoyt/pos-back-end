@@ -1,10 +1,10 @@
 from typing import Optional, List
 from pydantic import BaseModel, ConfigDict
 from pos_back_end.api.address.address_models import AddressRequestAndResponse
-from pos_back_end.api.common_services import CommonServices
+from pos_back_end.api.common_services import CommonServices, CommonBaseModel
 
 
-class PostRestaurantRequestBody(BaseModel):
+class PostRestaurantRequestBody(CommonBaseModel):
     admin_id: int
     restaurant_name: str
     restaurant_email: str
@@ -13,7 +13,7 @@ class PostRestaurantRequestBody(BaseModel):
     phone_number: str
 
 
-class RestaurantItem(BaseModel):
+class RestaurantItem(CommonBaseModel):
     id: int
     restaurant_name: str
     restaurant_email: str
@@ -26,5 +26,5 @@ class RestaurantItem(BaseModel):
     )
 
 
-class RestaurantsResponseBody(BaseModel):
+class RestaurantsResponseBody(CommonBaseModel):
     restaurants: List[RestaurantItem]

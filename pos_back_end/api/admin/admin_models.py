@@ -2,14 +2,15 @@ from pydantic import BaseModel, ConfigDict, field_validator
 from typing import Any
 
 from pos_back_end.api.address.address_models import AddressRequestAndResponse
+from pos_back_end.api.common_services import CommonBaseModel
 
 
-class LoginRequestBody(BaseModel):
+class LoginRequestBody(CommonBaseModel):
     email: str
     password: str
 
 
-class LoginResponseBody(BaseModel):
+class LoginResponseBody(CommonBaseModel):
     user_id: int
     first_name: str
     last_name: str
@@ -21,7 +22,7 @@ class LoginResponseBody(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class PostAdminRequestBody(BaseModel):
+class PostAdminRequestBody(CommonBaseModel):
     first_name: str
     last_name: str
     company_name: str

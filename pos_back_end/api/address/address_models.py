@@ -1,8 +1,10 @@
 from typing import List
 from pydantic import BaseModel, ConfigDict
 
+from pos_back_end.api.common_services import CommonBaseModel
 
-class StateItem(BaseModel):
+
+class StateItem(CommonBaseModel):
     id: int
     state_name: str
     state_code: str
@@ -10,11 +12,11 @@ class StateItem(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class StateResponseBody(BaseModel):
+class StateResponseBody(CommonBaseModel):
     states: List[StateItem]
 
 
-class AddressRequestAndResponse(BaseModel):
+class AddressRequestAndResponse(CommonBaseModel):
     street_address: str
     city: str
     state: str
