@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, status
 from fastapi import Depends
 from sqlalchemy.orm import Session
 from pos_back_end.db.dependencies import get_db
-from pos_back_end.api.admin.admin_request_models import PostAdminRequestBody, PostAdminResponseBody, \
+from pos_back_end.api.admin.admin_models import PostAdminRequestBody, PostAdminResponseBody, \
     AddressRequestAndResponse
 from pos_back_end.api.address.address_services import AddressServices
 from pos_back_end.api.admin.admin_services import AdminServices
@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.post("/admin")
-def create_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
+def post_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
 
     existing_admin: Admin = LoginServices().validate_admin_email(
         request.email,

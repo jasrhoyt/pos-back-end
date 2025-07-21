@@ -12,7 +12,7 @@ router = APIRouter()
 def get_states(db: Session = Depends(get_db)):
 
     states = AddressServices().get_states(db)
-
     state_items = [StateItem.from_orm(state) for state in states]
 
     return StateResponseBody(states=state_items)
+

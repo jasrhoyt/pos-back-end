@@ -1,3 +1,4 @@
+from pos_back_end.api.restaurant.restaurant_models import RestaurantItem, RestaurantsResponseBody
 from pos_back_end.db.models.restaurant import Restaurant
 
 
@@ -14,3 +15,11 @@ class RestaurantServices:
         )
 
         return new_restaurant
+
+    @staticmethod
+    def get_restaurants(admin_id, db):
+        restaurants = db.query(Restaurant).where(Restaurant.admin_id == admin_id).all()
+        restaurant_items = [RestaurantItem.from_orm(restaurant) for restaurant in restaurants]
+
+        return RestaurantsResponseBody(restaurants=restaurant_items)
+

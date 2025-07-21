@@ -15,7 +15,8 @@ router = APIRouter()
 
 @router.get('/restaurants')
 def get_restaurants(admin_id: int, db: Session = Depends(get_db)):
-    return db.query(Restaurant).where(Restaurant.admin_id == admin_id).all()
+
+    return RestaurantServices.get_restaurants(admin_id, db)
 
 
 @router.post('/restaurants')

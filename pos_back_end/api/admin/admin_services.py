@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from pos_back_end.api.admin.admin_request_models import PostAdminRequestBody
+from pos_back_end.api.admin.admin_models import PostAdminRequestBody
 from pos_back_end.db.models.admin import Admin
 
 
