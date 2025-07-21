@@ -1,14 +1,11 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from starlette.responses import JSONResponse
-
 from pos_back_end.api.address.address_services import AddressServices
 from pos_back_end.api.admin.admin_services import AdminServices
-from pos_back_end.api.restaurant.restaurant_models import PostRestaurantRequestBody
+from pos_back_end.api.restaurant.restaurant_models import PostRestaurantRequestBody, RestaurantItem
 from pos_back_end.api.restaurant.restaurant_services import RestaurantServices
 from pos_back_end.db.dependencies import get_db
 from pos_back_end.db.models.address import Address
-from pos_back_end.db.models.restaurant import Restaurant
 
 router = APIRouter()
 
@@ -39,8 +36,4 @@ def post_restaurant(request: PostRestaurantRequestBody, db: Session = Depends(ge
 
     db.commit()
 
-    return JSONResponse(
-        content={
-            "Success": True,
-        }
-    )
+    return RestaurantItem.from_orm(new_restaurant)
