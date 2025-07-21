@@ -19,8 +19,6 @@ class LoginResponseBody(CommonBaseModel):
     phone_number: str
     address: AddressRequestAndResponse
 
-    model_config = ConfigDict(from_attributes=True)
-
 
 class PostAdminRequestBody(CommonBaseModel):
     first_name: str

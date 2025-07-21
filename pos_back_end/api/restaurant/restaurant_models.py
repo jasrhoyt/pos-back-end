@@ -19,12 +19,6 @@ class RestaurantItem(CommonBaseModel):
     restaurant_email: str
     phone_number: str
 
-    model_config = ConfigDict(
-        from_attributes=True,
-        alias_generator=CommonServices().to_camel_case,  # creates camel case aliases
-        populate_by_name=True  # lets you use snake or camel case
-    )
-
 
 class RestaurantsResponseBody(CommonBaseModel):
     restaurants: List[RestaurantItem]

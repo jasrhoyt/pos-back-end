@@ -9,8 +9,6 @@ class StateItem(CommonBaseModel):
     state_name: str
     state_code: str
 
-    model_config = ConfigDict(from_attributes=True)
-
 
 class StateResponseBody(CommonBaseModel):
     states: List[StateItem]
@@ -21,6 +19,4 @@ class AddressRequestAndResponse(CommonBaseModel):
     city: str
     state: str
     zipcode: str
-
-    model_config = ConfigDict(from_attributes=True)
 
