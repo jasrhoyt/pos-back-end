@@ -1,5 +1,5 @@
 from fastapi import Request
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError, HTTPException
 from fastapi.responses import JSONResponse
 
 
@@ -35,3 +35,16 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     )
 
 
+async def conflict_exception_handler(request: Request, exc: HTTPException):
+    if exc.status_code == 409:
+        error_message = exc.detail or "Resource conflict occurred"
+        print(f"Conflict error: {error_message}")  # Debug log
+
+        return JSONResponse(
+            status_code=409,
+            content={
+                "statusCode": 409,
+                "errorMessage": error_message,
+            }
+        )
+    raise exc

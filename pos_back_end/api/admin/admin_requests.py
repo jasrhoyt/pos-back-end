@@ -1,6 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 from fastapi import Depends
 from sqlalchemy.orm import Session
+from starlette.responses import JSONResponse
+
 from pos_back_end.db.dependencies import get_db
 from pos_back_end.api.admin.admin_models import PostAdminRequestBody, PostAdminResponseBody, \
     AddressRequestAndResponse
@@ -21,9 +23,12 @@ def post_admin(request: PostAdminRequestBody, db: Session = Depends(get_db)):
     )
 
     if existing_admin:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="Email already in use.",
+        return JSONResponse(
+            status_code=409,
+            content={
+                "statusCode": 409,
+                "errorMessage": "That email is already in use.",
+            }
         )
 
     new_address = AddressServices().create_address(request.address)
