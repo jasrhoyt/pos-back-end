@@ -2,26 +2,25 @@ import os
 from pathlib import Path
 from sqlalchemy import create_engine
 from pos_back_end.db.base import Base
-
+import os
+from sqlalchemy import create_engine
+from pos_back_end.db.base import Base  # import your declarative base
 
 def init_db():
-    # Get the project root directory (parent of pos_back_end/)
-    project_root = Path(__file__).parent.parent.parent  # Navigate up from db/ to project root
+    # Get the database URL from environment variables (fallback to default)
+    DATABASE_URL = os.getenv(
+        "DATABASE_URL",
+        "postgresql+psycopg2://jasonhoyt:password@localhost:5432/pos_systems_database"
+    )
 
-    # Define the database path
-    db_dir = project_root / 'pos_back_end' / 'db'
-    db_path = db_dir / 'pos_system_database.db'
+    # Create the engine
+    engine = create_engine(DATABASE_URL)
 
-    # Ensure the db directory exists
-    os.makedirs(db_dir, exist_ok=True)
+    # Create all tables defined in your models
+    Base.metadata.create_all(engine)
 
-    # Create the database engine with absolute path
-    engine = create_engine(f'sqlite:///{db_path}')
-
-    # Create all tables defined in the models
-    # Base.metadata.create_all(engine)
-    print(f"Database initialized successfully at {db_path}")
+    print(f"Database initialized successfully at {DATABASE_URL}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     init_db()

@@ -58,11 +58,13 @@ def run_migrations_online() -> None:
     and associate a connection with the context.
 
     """
-    connectable = create_engine("sqlite:///pos_back_end/db/pos_system_database.db")
+    connectable = create_engine(config.get_main_option("sqlalchemy.url"))
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=target_metadata,
+            render_as_batch=True  # optional, mainly for SQLite; safe for Postgres
         )
 
         with context.begin_transaction():
