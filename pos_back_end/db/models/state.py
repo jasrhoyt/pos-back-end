@@ -7,5 +7,5 @@ class State(Base):
 
     id = Column(Integer, primary_key=True)
 
-    state_name = Column(String)
-    state_code = Column(String)
+    state_name = Column(String, unique=True)
+    state_code = Column(String, unique=True)
