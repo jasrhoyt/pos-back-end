@@ -19,7 +19,7 @@ class RestaurantServices:
     @staticmethod
     def get_restaurants(admin_id, db):
         restaurants = db.query(Restaurant).where(Restaurant.admin_id == admin_id).all()
-        restaurant_items = [RestaurantItem.from_orm(restaurant) for restaurant in restaurants]
+        restaurant_items = [RestaurantItem.model_validate(restaurant) for restaurant in restaurants]
 
         return RestaurantsResponseBody(restaurants=restaurant_items)
 

@@ -14,6 +14,8 @@ class PostRestaurantRequestBody(CommonBaseModel):
 
 
 class RestaurantItem(CommonBaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     restaurant_name: str
     restaurant_email: str

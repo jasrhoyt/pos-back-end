@@ -1,3 +1,4 @@
+from __future__ import annotations
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from pos_back_end.api.address.address_services import AddressServices
@@ -36,4 +37,4 @@ def post_restaurant(request: PostRestaurantRequestBody, db: Session = Depends(ge
 
     db.commit()
 
-    return RestaurantItem.from_orm(new_restaurant)
+    return RestaurantItem.model_validate(new_restaurant)

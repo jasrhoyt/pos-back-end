@@ -5,6 +5,8 @@ from pos_back_end.api.common_services import CommonBaseModel
 
 
 class StateItem(CommonBaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     state_name: str
     state_code: str
