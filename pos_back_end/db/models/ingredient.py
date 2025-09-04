@@ -6,7 +6,7 @@ class Ingredient(Base):
     __tablename__ = 'ingredients'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
+    ingredient_name = Column(String, unique=True, nullable=False)
 
     menu_item_ingredient_joins = relationship("MenuItemIngredientJoin", back_populates="ingredient")
     menu_items = relationship(

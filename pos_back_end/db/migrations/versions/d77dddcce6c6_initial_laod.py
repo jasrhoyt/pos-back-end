@@ -78,7 +78,7 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['admin_id'], ['admins.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('menu_categories',
+    op.create_table('menu',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('category_name', sa.String(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=False),
@@ -92,7 +92,7 @@ def upgrade() -> None:
     sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.Column('item_price', sa.Float(), nullable=False),
     sa.Column('menu_category_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['menu_category_id'], ['menu_categories.id'], ),
+    sa.ForeignKeyConstraint(['menu_category_id'], ['menu.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('menu_item_ingredient_joins',
@@ -122,7 +122,7 @@ def downgrade() -> None:
     op.drop_table('order_items')
     op.drop_table('menu_item_ingredient_joins')
     op.drop_table('menu_items')
-    op.drop_table('menu_categories')
+    op.drop_table('menu')
     op.drop_table('restaurants')
     op.drop_table('admins')
     op.drop_table('users')

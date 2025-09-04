@@ -5,12 +5,12 @@ from pos_back_end.db.models.restaurant import Restaurant
 
 
 class MenuCategory(Base):
-    __tablename__ = 'menu_categories'
+    __tablename__ = 'menu'
 
     id = Column(Integer, primary_key=True)
     category_name = Column(String, nullable=False)
 
     restaurant_id = Column(Integer, ForeignKey(Restaurant.id), nullable=False)
-    restaurant = relationship(Restaurant, back_populates="menu_categories", uselist=False)
+    restaurant = relationship(Restaurant, back_populates="menu", uselist=False)
 
     menu_items = relationship("MenuItem", back_populates="menu_category")
